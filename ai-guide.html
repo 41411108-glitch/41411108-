@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>東港跨海大橋｜AI 景點導覽</title>
+  <link rel="stylesheet" href="ai-guide.css">
+  <script src="data.js" defer></script>
+  <script src="ai-guide.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="back" href="index.html">← 返回 360 全景</a>
+    <div class="connection" id="connection" data-state="checking">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="connection-text" role="status">正在檢查後端</span>
+      <button type="button" id="check-button" class="quiet">重新檢查</button>
+    </div>
+  </header>
+  <main class="workspace">
+    <aside class="sidebar" aria-label="導覽設定">
+      <div class="scene-card">
+        <img id="scene-photo" alt="" hidden>
+        <div class="scene-copy">
+          <p class="eyebrow">360° 全景導覽</p>
+          <h1>東港跨海大橋</h1>
+        </div>
+      </div>
+      <div class="settings">
+        <label for="scene">目前場景</label>
+        <select id="scene"></select>
+        <label for="model">回答模型</label>
+        <select id="model">
+          <option value="gpt-5.4-mini">gpt-5.4-mini · 快速省額</option>
+          <option value="gpt-6-luna">gpt-6-luna · 均衡導覽</option>
+          <option value="gpt-6.1-terra">gpt-6.1-terra · 深入介紹</option>
+        </select>
+        <h2>快捷提問</h2>
+        <div class="quick-questions">
+          <button type="button" data-question="這個場景有哪些細節值得觀察？">觀察細節 <span aria-hidden="true">↗</span></button>
+          <button type="button" data-question="這座橋有哪些歷史或文化背景？">歷史文化 <span aria-hidden="true">↗</span></button>
+          <button type="button" data-question="從這個場景可以怎麼取景拍照？">停留與拍照 <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+    </aside>
+    <section class="conversation" aria-labelledby="conversation-title">
+      <header class="conversation-header">
+        <div>
+          <p class="eyebrow">景點對話助手</p>
+          <h2 id="conversation-title"></h2>
+        </div>
+        <button type="button" class="quiet" id="clear-button">清除對話</button>
+      </header>
+      <div id="messages" class="messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+      <form id="question-form" class="composer">
+        <label class="sr-only" for="question">輸入導覽問題</label>
+        <div class="input-row">
+          <textarea id="question" rows="2" maxlength="1500" required placeholder="想了解這個場景的什麼？"></textarea>
+          <button type="submit" class="send" id="send-button">送出 ↑</button>
+        </div>
+        <p id="feedback" class="feedback" role="status"></p>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
